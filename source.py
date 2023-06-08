@@ -151,8 +151,10 @@ def searchByName(option):
         match fineSelect:
             case 'y':
                 searchByName(option)
+                return
             case 'n':
                 menu()
+                return
             case _:
                 os.system('cls')
 
@@ -308,7 +310,7 @@ def displayDetails(details, option):
         print('Premiered : ' + ('?' if details.get('start_season') is None else details['start_season']['season'].title() + ' ' + str(details['start_season']['year'])))
         print('Broadcast : ' + ('?' if details.get('broadcast') is None else (details['broadcast']['day_of_the_week'] + 's').title() + ' at ' + details['broadcast']['start_time'] + ' (JST)'))
         print('Studios   : ' + ', '.join([studio['name'] for studio in details['studios']]))
-        print('Source    : ' + details['source'].replace('_', ' ').title())
+        print('Source    : ' + ('?' if details.get('source') is None else details['source'].replace('_', ' ').title()))
         print('Genres    : ' + ', '.join([genre['name'] for genre in details['genres']]))
         print('Duration  : ' + str(int((details['average_episode_duration'] / 60 ))) + '  min. per ep.')
         print('Rating    : ' + ('?' if details.get('rating') is None else details['rating'].replace('_', ' ').title()) )
