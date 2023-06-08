@@ -257,13 +257,15 @@ def getAnimeBySeason():
     while (year.isdigit() == True and (int(year) > 2099 or int(year) < 1917)) or year.isdigit() == False :
         year = input('Year (1917-2099): ')
 
-    param = urllib.parse.urlencode({ 'limit' : '100'})
+    param = urllib.parse.urlencode({ 'limit' : '500'})
 
     seasonResponse = requests.get(base_url + 'anime/season/' + year + '/' + season + '?'+ param, headers = auth )
 
-    season_data = seasonResponse.json().get('data')
-    
-    if season_data  is None:
+    season_data = seasonResponse.json().get('data') 
+
+    print(type(season_data))
+
+    if season_data is None:
         print('\nNot Found!')
     else:
         os.system('cls')
